@@ -1,0 +1,13 @@
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+rouge-score>=0.1.2
+bert-score>=0.3.13
+torch>=2.1
+transformers>=4.50,<5.0
+peft>=0.10
+accelerate>=0.27
+lm-eval==0.4.5
+tqdm
+pyyaml
