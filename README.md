@@ -11,7 +11,7 @@ This repository accompanies the paper *"An Open Pipeline for Domain-Adaptive Ins
 | Component | Location | Notes |
 |---|---|---|
 | **Corpus and evaluation data** | [Zenodo `10.5281/zenodo.20083055`](https://doi.org/10.5281/zenodo.20083055) | Prompt-generated subset (235,367 QA pairs), source-document manifest (2,540 PDFs), cleaned text segments (34,472 segments), source-grounded evaluation set (N=323), train/eval overlap audit report |
-| **Trained model weights** | [HuggingFace `jeong0313/koni-it-m-7875`](https://huggingface.co/jeong0313/koni-it-m-7875) | KorDef-LLM, 12B parameters, BF16, safetensors |
+| **Trained model weights** | [HuggingFace `graphuser/kordef-12b`](https://huggingface.co/graphuser/kordef-12b) | KorDef-LLM, 12B parameters, BF16, safetensors |
 | **Code (this repo)** | [GitHub `gshwan22/KorDef-LLM`](https://github.com/gshwan22/KorDef-LLM) | Inference, scoring, and figure-generation code |
 
 ---
@@ -67,7 +67,7 @@ mv kordef_corpus_v1.0/eval_qa_329_final.jsonl artifacts/eval_qa_329_aligned.json
 ```bash
 mkdir -p outputs logs
 python src/inference/run_sourcegrounded_inference.py \
-    --model jeong0313/koni-it-m-7875 \
+    --model graphuser/kordef-12b \
     --input artifacts/eval_qa_329_aligned.jsonl \
     --output outputs/outputs_kordef_sourcegrounded_eval323.jsonl
 ```
