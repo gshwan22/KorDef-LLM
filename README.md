@@ -175,5 +175,5 @@ KorDef-LLM is released for **research on Korean professional-domain language mod
 
 ## Contact
 
-For questions about this code or the paper, please open an issue on GitHub or contact the corresponding author at `kyongha@kisti.re.kr`.
+For questions about this code or the paper, please open an issue on GitHub or contact the corresponding author at `gwlee@kisti.re.kr`.
 
