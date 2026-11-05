@@ -1,0 +1,58 @@
+Judge summary (judge/judge_scores.jsonl)
+========================================================================
+
+[factual_consistency]
+  axlight    n=323 mean=4.675 | delta_vs_base=+0.006 wilcoxon_p=0.775
+  exaone35   n=323 mean=4.641 | delta_vs_base=-0.028 wilcoxon_p=0.666
+  gemma3_12b n=323 mean=4.669
+  kordef     n=323 mean=4.681 | delta_vs_base=+0.012 wilcoxon_p=0.805
+  llama31    n=323 mean=4.659 | delta_vs_base=-0.009 wilcoxon_p=0.935
+  lora_r16_v2 n=323 mean=4.563 | delta_vs_base=-0.105 wilcoxon_p=0.0621
+  lora_r64   n=323 mean=4.712 | delta_vs_base=+0.043 wilcoxon_p=0.102
+  lora_r64_all_v2 n=323 mean=4.427 | delta_vs_base=-0.241 wilcoxon_p=0.000395
+  lora_r64_v2 n=323 mean=4.350 | delta_vs_base=-0.319 wilcoxon_p=6.74e-06
+  lora_r8_v2 n=323 mean=4.529 | delta_vs_base=-0.139 wilcoxon_p=0.0289
+  qlora_r64_v2 n=323 mean=4.362 | delta_vs_base=-0.307 wilcoxon_p=3.35e-06
+  qwen25     n=323 mean=4.793 | delta_vs_base=+0.124 wilcoxon_p=0.0122
+
+[correctness]
+  axlight    n=323 mean=4.229 | delta_vs_base=-0.031 wilcoxon_p=0.744
+  exaone35   n=323 mean=4.111 | delta_vs_base=-0.149 wilcoxon_p=0.0684
+  gemma3_12b n=323 mean=4.260
+  kordef     n=323 mean=4.276 | delta_vs_base=+0.015 wilcoxon_p=0.886
+  llama31    n=323 mean=4.034 | delta_vs_base=-0.226 wilcoxon_p=0.00673
+  lora_r16_v2 n=323 mean=4.164 | delta_vs_base=-0.096 wilcoxon_p=0.0699
+  lora_r64   n=323 mean=4.362 | delta_vs_base=+0.102 wilcoxon_p=0.00496
+  lora_r64_all_v2 n=323 mean=4.056 | delta_vs_base=-0.204 wilcoxon_p=0.00355
+  lora_r64_v2 n=323 mean=3.941 | delta_vs_base=-0.319 wilcoxon_p=2.59e-05
+  lora_r8_v2 n=323 mean=4.118 | delta_vs_base=-0.142 wilcoxon_p=0.0203
+  qlora_r64_v2 n=323 mean=3.895 | delta_vs_base=-0.365 wilcoxon_p=7.4e-07
+  qwen25     n=323 mean=3.752 | delta_vs_base=-0.508 wilcoxon_p=1.57e-08
+
+[completeness]
+  axlight    n=323 mean=4.375 | delta_vs_base=-0.015 wilcoxon_p=0.841
+  exaone35   n=323 mean=4.217 | delta_vs_base=-0.173 wilcoxon_p=0.0165
+  gemma3_12b n=323 mean=4.390
+  kordef     n=323 mean=4.406 | delta_vs_base=+0.015 wilcoxon_p=0.943
+  llama31    n=323 mean=3.957 | delta_vs_base=-0.433 wilcoxon_p=1.08e-07
+  lora_r16_v2 n=323 mean=4.111 | delta_vs_base=-0.279 wilcoxon_p=5.86e-06
+  lora_r64   n=323 mean=4.452 | delta_vs_base=+0.062 wilcoxon_p=0.0576
+  lora_r64_all_v2 n=323 mean=4.090 | delta_vs_base=-0.300 wilcoxon_p=1.04e-05
+  lora_r64_v2 n=323 mean=3.938 | delta_vs_base=-0.452 wilcoxon_p=6.88e-09
+  lora_r8_v2 n=323 mean=4.105 | delta_vs_base=-0.285 wilcoxon_p=1.63e-05
+  qlora_r64_v2 n=323 mean=3.867 | delta_vs_base=-0.523 wilcoxon_p=1.6e-11
+  qwen25     n=323 mean=3.783 | delta_vs_base=-0.607 wilcoxon_p=5.36e-11
+
+[conciseness]
+  axlight    n=323 mean=4.232 | delta_vs_base=+0.464 wilcoxon_p=7.46e-18
+  exaone35   n=323 mean=4.015 | delta_vs_base=+0.248 wilcoxon_p=7.19e-07
+  gemma3_12b n=323 mean=3.768
+  kordef     n=323 mean=3.768 | delta_vs_base=+0.000 wilcoxon_p=0.982
+  llama31    n=323 mean=4.409 | delta_vs_base=+0.641 wilcoxon_p=2.65e-23
+  lora_r16_v2 n=323 mean=4.424 | delta_vs_base=+0.656 wilcoxon_p=3.38e-28
+  lora_r64   n=323 mean=3.740 | delta_vs_base=-0.028 wilcoxon_p=0.34
+  lora_r64_all_v2 n=323 mean=4.245 | delta_vs_base=+0.477 wilcoxon_p=8.15e-18
+  lora_r64_v2 n=323 mean=4.409 | delta_vs_base=+0.641 wilcoxon_p=8.92e-26
+  lora_r8_v2 n=323 mean=4.362 | delta_vs_base=+0.594 wilcoxon_p=8.09e-23
+  qlora_r64_v2 n=323 mean=4.396 | delta_vs_base=+0.628 wilcoxon_p=1.1e-26
+  qwen25     n=323 mean=4.471 | delta_vs_base=+0.703 wilcoxon_p=6.66e-29
