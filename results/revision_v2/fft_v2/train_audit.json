@@ -1,0 +1,11 @@
+{
+  "global_step": 13332,
+  "epoch": 3.0,
+  "expected_total_steps": 13332,
+  "step_match": true,
+  "train_runtime_sec": 961138.9951,
+  "final_loss": 1.0876092285928232,
+  "dataset_rows": 568825,
+  "dataset_sha256": "edaa71777e6bbe2c778c0eb0f521f271f34716a1345803ce53e5f04625ffaa6c",
+  "effective_batch_size": 128
+}

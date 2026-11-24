@@ -1,0 +1,11 @@
+{
+  "dataset_rows": 568825,
+  "dataset_sha256": "edaa71777e6bbe2c778c0eb0f521f271f34716a1345803ce53e5f04625ffaa6c",
+  "world_size": 2,
+  "per_device_train_batch_size": 1,
+  "gradient_accumulation_steps": 64,
+  "effective_batch_size": 128,
+  "expected_steps_per_epoch": 4444,
+  "num_train_epochs": 3,
+  "expected_total_steps": 13332
+}
