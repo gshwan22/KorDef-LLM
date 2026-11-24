@@ -21,9 +21,10 @@ plt.rcParams.update({
 })
 
 OUT = Path('figures'); OUT.mkdir(exist_ok=True)
-C_GEMMA = '#5B9BD5'; C_KORDEF = '#E74C3C'; C_SIG = '#2171B5'; C_NS = '#999999'
+C_GEMMA = '#888888'   # base: neutral gray (matches cross-model figure)
+C_KORDEF = '#EE6677'  # ours: rose (matches cross-model figure)
+C_NS = '#AAAAAA'
 
-# === FIXED metric values from revised paper (N=323, retrained checkpoint) ===
 ANSWER_TYPES = {
     'criterion':       {'n': 96, 'gemma': 0.407, 'kordef': 0.538, 'delta': 0.131},
     'procedure':       {'n': 82, 'gemma': 0.424, 'kordef': 0.532, 'delta': 0.108},
@@ -36,7 +37,6 @@ ANSWER_TYPES = {
     'exception':       {'n': 3,  'gemma': 0.362, 'kordef': 0.436, 'delta': 0.074},
 }
 
-# Paired deltas vs base: (delta, ci_lo, ci_hi, significant) — B=10,000 bootstrap
 PAIRED = [
     ('Token-F1',        0.1180,  0.1024,  0.1335, True),
     ('ROUGE-L',         0.1162,  0.1001,  0.1326, True),
@@ -44,7 +44,6 @@ PAIRED = [
     ('Evidence recall', -0.0073, -0.0298, 0.0147, False),
     ('Refusal rate',    -0.1703, -0.2105, -0.1300, True),
 ]
-PAIRED_TOKENS = ('Answer tokens', -13.84, -15.02, -12.64, True)
 
 
 def fig_answer_style():
@@ -63,8 +62,9 @@ def fig_answer_style():
              r'$\Delta$ = $-$13.8' + '\n' + r'$p < 10^{-45}$',
              fontsize=8, ha='left', va='center', color='#333')
     ax1.set_ylabel('Mean answer tokens')
-    ax1.set_title('(a) Answer length', fontweight='bold')
     ax1.set_ylim(0, 52)
+    ax1.text(0.02, 0.98, '(a)', transform=ax1.transAxes, fontsize=12,
+             fontweight='bold', va='top')
 
     refusal = [0.1765, 0.0062]
     bars2 = ax2.bar(models, refusal, color=colors, width=0.5, edgecolor='white', linewidth=0.5)
@@ -72,10 +72,11 @@ def fig_answer_style():
         ax2.text(bar.get_x() + bar.get_width()/2., bar.get_height() + 0.003,
                  f'{val:.1%}', ha='center', va='bottom', fontsize=10, fontweight='bold')
     ax2.set_ylabel('Refusal rate')
-    ax2.set_title('(b) Refusal rate', fontweight='bold')
     ax2.set_ylim(0, 0.25)
     ax2.text(0.5, 0.225, r'$\Delta$ = $-$0.170, $p < 10^{-13}$',
-             fontsize=9, ha='center', color=C_SIG)
+             fontsize=9, ha='center', color='#333')
+    ax2.text(0.02, 0.98, '(b)', transform=ax2.transAxes, fontsize=12,
+             fontweight='bold', va='top')
 
     plt.tight_layout()
     path = OUT / 'figure_sourcegrounded_answer_style_eval323.pdf'
@@ -103,7 +104,6 @@ def fig_answer_type():
     ax.scatter([], [], color=C_GEMMA, s=55, label='Gemma-3-12B')
     ax.scatter([], [], color=C_KORDEF, s=55, label='KorDef-LLM')
     ax.legend(loc='upper left', fontsize=9, framealpha=0.9)
-    ax.set_title('Token-F1 by answer type (N=323)', fontweight='bold')
 
     plt.tight_layout()
     path = OUT / 'figure_tokenf1_by_answer_type_eval323.pdf'
@@ -112,27 +112,15 @@ def fig_answer_type():
 
 
 def fig_forest():
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.5, 3.6),
-                                   gridspec_kw={'width_ratios': [3, 1]})
-    names = [p[0] for p in PAIRED]
+    fig, ax = plt.subplots(figsize=(6.5, 3.2))
     y = np.arange(len(PAIRED))[::-1]
     for i, (name, d, lo, hi, sig) in enumerate(PAIRED):
-        c = C_SIG if sig else C_NS
-        ax1.errorbar(d, y[i], xerr=[[d - lo], [hi - d]], fmt='o', color=c,
-                     ecolor=c, markersize=7, capsize=4, capthick=1.5, elinewidth=1.8)
-    ax1.axvline(0, color='#333', linewidth=0.8, linestyle='--')
-    ax1.set_yticks(y); ax1.set_yticklabels(names, fontsize=9)
-    ax1.set_xlabel(r'Mean paired $\Delta$ (KorDef $-$ base)')
-    ax1.set_title('(a) Score-scale metrics', fontweight='bold')
-
-    name, d, lo, hi, sig = PAIRED_TOKENS
-    ax2.errorbar(d, 0, xerr=[[d - lo], [hi - d]], fmt='o', color=C_SIG,
-                 ecolor=C_SIG, markersize=7, capsize=4, capthick=1.5, elinewidth=1.8)
-    ax2.axvline(0, color='#333', linewidth=0.8, linestyle='--')
-    ax2.set_yticks([0]); ax2.set_yticklabels([name], fontsize=9)
-    ax2.set_ylim(-1, 1); ax2.set_xlim(-18, 2)
-    ax2.set_xlabel(r'Mean paired $\Delta$ (tokens)')
-    ax2.set_title('(b) Answer length', fontweight='bold')
+        c = C_KORDEF if sig else C_NS
+        ax.errorbar(d, y[i], xerr=[[d - lo], [hi - d]], fmt='o', color=c,
+                    ecolor=c, markersize=7, capsize=4, capthick=1.5, elinewidth=1.8)
+    ax.axvline(0, color='#333', linewidth=0.8, linestyle='--')
+    ax.set_yticks(y); ax.set_yticklabels([p[0] for p in PAIRED], fontsize=9)
+    ax.set_xlabel(r'Mean paired $\Delta$ (KorDef $-$ base)')
 
     plt.tight_layout()
     path = OUT / 'figure_sourcegrounded_eval323_forest.pdf'

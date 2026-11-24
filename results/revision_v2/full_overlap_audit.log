@@ -1,0 +1,12 @@
+nohup: ignoring input
+eval items: 323  (question key='source_grounded_question', answer key='reference_answer')
+  100,000 lines... exactQ=0 exactA=0 nearQ=0
+  200,000 lines... exactQ=0 exactA=0 nearQ=0
+  300,000 lines... exactQ=0 exactA=0 nearQ=0
+  400,000 lines... exactQ=0 exactA=0 nearQ=0
+  500,000 lines... exactQ=0 exactA=0 nearQ=0
+
+=== FULL-CORPUS OVERLAP AUDIT (568,825 training texts vs 323 eval items) ===
+exact question overlaps : 0  []
+exact answer overlaps   : 0  []
+near-question (>=80% 5-gram containment): 0  []

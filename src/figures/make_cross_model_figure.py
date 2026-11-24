@@ -33,7 +33,8 @@ MODEL_RESULTS = {
 ORDER = ["Gemma-3-12B (base)", "EXAONE-3.5-7.8B", "Qwen2.5-7B",
          "Llama-3.1-8B", "A.X-4.0-Light", "KorDef-LLM (ours)"]
 METRICS = [("token_f1", "Token-F1"), ("rouge_l", "ROUGE-L"),
-           ("char3", "Char-3 Jaccard"), ("evidence", "Evidence Recall (source faithfulness)")]
+           ("char3", "Char-3 Jaccard"), ("evidence", "Evidence recall")]
+PANEL = ['(a)', '(b)', '(c)', '(d)']
 
 
 def main():
@@ -50,13 +51,14 @@ def main():
                         markersize=10, capsize=4, capthick=2,
                         markeredgecolor='black', markeredgewidth=0.7, elinewidth=2)
         ax.set_yticks(y_positions); ax.set_yticklabels(ORDER, fontsize=9)
-        ax.set_xlabel(f"{metric_name} (higher is better)", fontsize=10)
+        ax.set_xlabel(metric_name, fontsize=10)
         ax.grid(True, axis='x', alpha=0.3)
         ax.spines['top'].set_visible(False); ax.spines['right'].set_visible(False)
+        ax.text(0.02, 0.98, PANEL[ax_idx], transform=ax.transAxes,
+                fontsize=12, fontweight='bold', va='top')
         kordef_idx = ORDER.index("KorDef-LLM (ours)")
         ax.axhspan(y_positions[kordef_idx] - 0.4, y_positions[kordef_idx] + 0.4,
                    color='#EE6677', alpha=0.08, zorder=0)
-    fig.suptitle("Cross-model source-grounded evaluation ($N{=}323$)", fontsize=12, y=1.02)
     fig.savefig(OUT / "figure_cross_model.pdf", bbox_inches='tight', dpi=200)
     fig.savefig(OUT / "figure_cross_model.png", bbox_inches='tight', dpi=200)
     print("Saved: figures/figure_cross_model.pdf")
